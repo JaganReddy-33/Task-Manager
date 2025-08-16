@@ -1,0 +1,252 @@
+:root {
+  --primary: #0d6efd;
+  --bg: #121212;
+  --card-bg: #1e1e1e;
+  --text-light: #eee;
+  --text-muted: #aaa;
+  --danger: #dc3545;
+  --radius: 8px;
+  --transition: 0.3s ease;
+  --max-width: 600px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-light);
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+form {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+form textarea {
+  grid-column: 1 / -1;
+  resize: vertical;
+  min-height: 60px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: none;
+  background-color: #333;
+  color: var(--text-light);
+  transition: background-color var(--transition);
+}
+
+input,
+textarea,
+button {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  border: none;
+  background-color: #333;
+  color: var(--text-light);
+  transition: background-color var(--transition);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  background-color: #444;
+}
+
+button {
+  grid-column: 2 / 3;
+  background-color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color var(--transition);
+}
+
+button:hover {
+  background-color: #084cd8;
+}
+
+.tasks {
+  margin-top: 2rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #2e2e2e;
+  transition: background-color var(--transition);
+  user-select: none;
+}
+
+.task:last-child {
+  border-bottom: none;
+}
+
+.task.completed .title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.checkbox {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 2px solid #888;
+  position: relative;
+  flex-shrink: 0;
+  background-color: transparent;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.checkbox.checked {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.checkbox.checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border-right: 2.5px solid white;
+  border-bottom: 2.5px solid white;
+  transform: rotate(45deg);
+}
+
+.title {
+  flex-grow: 1;
+  font-weight: 600;
+  margin-left: 0.75rem;
+  word-break: break-word;
+}
+
+.due-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 130px;
+  text-align: right;
+  margin-left: 1rem;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 0.75rem;
+  font-style: italic;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0 8px;
+  transition: color var(--transition);
+  user-select: none;
+}
+
+.btn:hover {
+  color: #ff6b6b;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.filters button {
+  background-color: #333;
+  border: none;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: background-color var(--transition);
+  font-weight: 600;
+}
+
+.filters button.active,
+.filters button:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Responsive improvements */
+@media (max-width: 600px) {
+  form {
+    grid-template-columns: 1fr !important;
+  }
+
+  button[type='submit'] {
+    grid-column: 1 / 2 !important;
+    width: 100%;
+  }
+
+  .task {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .due-date {
+    display: block;
+    margin-left: 0;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    color: var(--text-muted);
+  }
+
+  .desc {
+    white-space: normal;
+  }
+
+  .checkbox {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .filters button {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

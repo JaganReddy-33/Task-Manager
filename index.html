@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h1>Task Manager</h1>
+
+  <form id="taskForm" autocomplete="off" aria-label="Add or edit task">
+    <input id="title" type="text" placeholder="Task title..." required aria-required="true" />
+    <input id="due" type="datetime-local" aria-label="Due date and time" />
+    <textarea id="desc" placeholder="Description..."></textarea>
+    <button type="submit">Add Task</button>
+  </form>
+
+  <div class="filters" role="tablist" aria-label="Filter tasks">
+    <button data-filter="all" class="active" role="tab" aria-selected="true" tabindex="0">All</button>
+    <button data-filter="active" role="tab" aria-selected="false" tabindex="-1">Active</button>
+    <button data-filter="completed" role="tab" aria-selected="false" tabindex="-1">Completed</button>
+    <button data-filter="due-soon" role="tab" aria-selected="false" tabindex="-1">Due Soon</button>
+  </div>
+
+  <section class="tasks" id="taskList" aria-live="polite" aria-atomic="true"></section>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
